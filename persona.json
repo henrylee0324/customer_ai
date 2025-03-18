@@ -1,224 +1,224 @@
 [
     {
-      "customer_id": 1,
-      "age": 51,
-      "gender": "Male",
-      "marital_status": "Married",
-      "education": "College",
-      "income": "Medium",
-      "job_type": "Service/Small Business",
-      "has_life_insurance": true,
-      "insurance_interest": [
-        "Retirement Pension",
-        "Health Insurance/Critical Illness",
-        "Child Education",
-        "Life Insurance/Savings"
+      "客戶編號": 1,
+      "年齡": 51,
+      "性別": "男",
+      "婚姻狀況": "已婚",
+      "教育程度": "大學",
+      "收入": "中等",
+      "職業類型": "服務/小型企業",
+      "有壽險": true,
+      "保險興趣": [
+        "退休金",
+        "健康保險/重大疾病",
+        "子女教育",
+        "壽險/儲蓄"
       ],
-      "family_structure": {
-        "family_size": 5
+      "家庭結構": {
+        "家庭人數": 5
       },
-      "risk_attitude": "Risk-Averse",
-      "preferred_channel": "Offline",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "INTJ"
+      "風險態度": "風險規避",
+      "偏好管道": "線下",
+      "銷售接受度": "高度接受",
+      "MBTI": "INTJ"
     },
     {
-      "customer_id": 2,
-      "age": 36,
-      "gender": "Male",
-      "marital_status": "Single",
-      "education": "High School",
-      "income": "Low",
-      "job_type": "Agriculture/Farming",
-      "has_life_insurance": false,
-      "insurance_interest": [
-        "Health Insurance/Critical Illness",
-        "Accident Insurance"
+      "客戶編號": 2,
+      "年齡": 36,
+      "性別": "男",
+      "婚姻狀況": "單身",
+      "教育程度": "高中",
+      "收入": "低",
+      "職業類型": "農業/農作",
+      "有壽險": false,
+      "保險興趣": [
+        "健康保險/重大疾病",
+        "意外險"
       ],
-      "family_structure": {
-        "family_size": 2
+      "家庭結構": {
+        "家庭人數": 2
       },
-      "risk_attitude": "Risk-Averse",
-      "preferred_channel": "Offline",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "ISTP"
+      "風險態度": "風險規避",
+      "偏好管道": "線下",
+      "銷售接受度": "高度接受",
+      "MBTI": "ISTP"
     },
     {
-      "customer_id": 3,
-      "age": 33,
-      "gender": "Male",
-      "marital_status": "Married",
-      "education": "College",
-      "income": "Low",
-      "job_type": "Agriculture/Farming",
-      "has_life_insurance": false,
-      "insurance_interest": [
-        "Accident Insurance",
-        "Health Insurance/Critical Illness",
-        "Child Education",
-        "Life Insurance/Savings"
+      "客戶編號": 3,
+      "年齡": 33,
+      "性別": "男",
+      "婚姻狀況": "已婚",
+      "教育程度": "大學",
+      "收入": "低",
+      "職業類型": "農業/農作",
+      "有壽險": false,
+      "保險興趣": [
+        "意外險",
+        "健康保險/重大疾病",
+        "子女教育",
+        "壽險/儲蓄"
       ],
-      "family_structure": {
-        "family_size": 3
+      "家庭結構": {
+        "家庭人數": 3
       },
-      "risk_attitude": "Risk-Averse",
-      "preferred_channel": "Online",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "ESFJ"
+      "風險態度": "風險規避",
+      "偏好管道": "線上",
+      "銷售接受度": "高度接受",
+      "MBTI": "ESFJ"
     },
     {
-      "customer_id": 4,
-      "age": 40,
-      "gender": "Female",
-      "marital_status": "Married",
-      "education": "High School",
-      "income": "Medium",
-      "job_type": "Office Worker/Clerical",
-      "has_life_insurance": false,
-      "insurance_interest": [
-        "Health Insurance/Critical Illness",
-        "Child Education",
-        "Life Insurance/Savings"
+      "客戶編號": 4,
+      "年齡": 40,
+      "性別": "女",
+      "婚姻狀況": "已婚",
+      "教育程度": "高中",
+      "收入": "中等",
+      "職業類型": "辦公室職員/文書",
+      "有壽險": false,
+      "保險興趣": [
+        "健康保險/重大疾病",
+        "子女教育",
+        "壽險/儲蓄"
       ],
-      "family_structure": {
-        "family_size": 5
+      "家庭結構": {
+        "家庭人數": 5
       },
-      "risk_attitude": "Risk-Averse",
-      "preferred_channel": "Offline",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "ISFJ"
+      "風險態度": "風險規避",
+      "偏好管道": "線下",
+      "銷售接受度": "高度接受",
+      "MBTI": "ISFJ"
     },
     {
-      "customer_id": 5,
-      "age": 45,
-      "gender": "Male",
-      "marital_status": "Married",
-      "education": "High School",
-      "income": "Medium",
-      "job_type": "Office Worker/Clerical",
-      "has_life_insurance": false,
-      "insurance_interest": [
-        "Health Insurance/Critical Illness",
-        "Child Education",
-        "Life Insurance/Savings"
+      "客戶編號": 5,
+      "年齡": 45,
+      "性別": "男",
+      "婚姻狀況": "已婚",
+      "教育程度": "高中",
+      "收入": "中等",
+      "職業類型": "辦公室職員/文書",
+      "有壽險": false,
+      "保險興趣": [
+        "健康保險/重大疾病",
+        "子女教育",
+        "壽險/儲蓄"
       ],
-      "family_structure": {
-        "family_size": 3
+      "家庭結構": {
+        "家庭人數": 3
       },
-      "risk_attitude": "Risk-Averse",
-      "preferred_channel": "Offline",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "ENFP"
+      "風險態度": "風險規避",
+      "偏好管道": "線下",
+      "銷售接受度": "高度接受",
+      "MBTI": "ENFP"
     },
     {
-      "customer_id": 6,
-      "age": 18,
-      "gender": "Male",
-      "marital_status": "Married",
-      "education": "High School",
-      "income": "Medium",
-      "job_type": "Agriculture/Farming",
-      "has_life_insurance": false,
-      "insurance_interest": [
-        "Accident Insurance",
-        "Health Insurance/Critical Illness",
-        "Life Insurance/Savings"
+      "客戶編號": 6,
+      "年齡": 18,
+      "性別": "男",
+      "婚姻狀況": "已婚",
+      "教育程度": "高中",
+      "收入": "中等",
+      "職業類型": "農業/農作",
+      "有壽險": false,
+      "保險興趣": [
+        "意外險",
+        "健康保險/重大疾病",
+        "壽險/儲蓄"
       ],
-      "family_structure": {
-        "family_size": 3
+      "家庭結構": {
+        "家庭人數": 3
       },
-      "risk_attitude": "Moderate",
-      "preferred_channel": "Online",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "ISFP"
+      "風險態度": "適中",
+      "偏好管道": "線上",
+      "銷售接受度": "高度接受",
+      "MBTI": "ISFP"
     },
     {
-      "customer_id": 7,
-      "age": 33,
-      "gender": "Female",
-      "marital_status": "Married",
-      "education": "College",
-      "income": "Low",
-      "job_type": "Self-employed/Entrepreneur",
-      "has_life_insurance": false,
-      "insurance_interest": [
-        "Accident Insurance",
-        "Health Insurance/Critical Illness",
-        "Child Education",
-        "Life Insurance/Savings"
+      "客戶編號": 7,
+      "年齡": 33,
+      "性別": "女",
+      "婚姻狀況": "已婚",
+      "教育程度": "大學",
+      "收入": "低",
+      "職業類型": "自營/企業家",
+      "有壽險": false,
+      "保險興趣": [
+        "意外險",
+        "健康保險/重大疾病",
+        "子女教育",
+        "壽險/儲蓄"
       ],
-      "family_structure": {
-        "family_size": 5
+      "家庭結構": {
+        "家庭人數": 5
       },
-      "risk_attitude": "Risk-Averse",
-      "preferred_channel": "Offline",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "ESFJ"
+      "風險態度": "風險規避",
+      "偏好管道": "線下",
+      "銷售接受度": "高度接受",
+      "MBTI": "ESFJ"
     },
     {
-      "customer_id": 8,
-      "age": 18,
-      "gender": "Female",
-      "marital_status": "Married",
-      "education": "High School",
-      "income": "Medium",
-      "job_type": "Agriculture/Farming",
-      "has_life_insurance": true,
-      "insurance_interest": [
-        "Accident Insurance",
-        "Health Insurance/Critical Illness",
-        "Life Insurance/Savings"
+      "客戶編號": 8,
+      "年齡": 18,
+      "性別": "女",
+      "婚姻狀況": "已婚",
+      "教育程度": "高中",
+      "收入": "中等",
+      "職業類型": "農業/農作",
+      "有壽險": true,
+      "保險興趣": [
+        "意外險",
+        "健康保險/重大疾病",
+        "壽險/儲蓄"
       ],
-      "family_structure": {
-        "family_size": 3
+      "家庭結構": {
+        "家庭人數": 3
       },
-      "risk_attitude": "Risk-Averse",
-      "preferred_channel": "Offline",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "ENFP"
+      "風險態度": "風險規避",
+      "偏好管道": "線下",
+      "銷售接受度": "高度接受",
+      "MBTI": "ENFP"
     },
     {
-      "customer_id": 9,
-      "age": 48,
-      "gender": "Female",
-      "marital_status": "Married",
-      "education": "College",
-      "income": "Medium",
-      "job_type": "Service/Small Business",
-      "has_life_insurance": true,
-      "insurance_interest": [
-        "Health Insurance/Critical Illness",
-        "Child Education",
-        "Life Insurance/Savings"
+      "客戶編號": 9,
+      "年齡": 48,
+      "性別": "女",
+      "婚姻狀況": "已婚",
+      "教育程度": "大學",
+      "收入": "中等",
+      "職業類型": "服務/小型企業",
+      "有壽險": true,
+      "保險興趣": [
+        "健康保險/重大疾病",
+        "子女教育",
+        "壽險/儲蓄"
       ],
-      "family_structure": {
-        "family_size": 4
+      "家庭結構": {
+        "家庭人數": 4
       },
-      "risk_attitude": "Moderate",
-      "preferred_channel": "Online",
-      "sales_acceptance": "Medium Acceptance",
-      "mbti": "ISTJ"
+      "風險態度": "適中",
+      "偏好管道": "線上",
+      "銷售接受度": "中度接受",
+      "MBTI": "ISTJ"
     },
     {
-      "customer_id": 10,
-      "age": 28,
-      "gender": "Female",
-      "marital_status": "Single",
-      "education": "High School",
-      "income": "Low",
-      "job_type": "Service/Small Business",
-      "has_life_insurance": false,
-      "insurance_interest": [
-        "Health Insurance/Critical Illness",
-        "Accident Insurance"
+      "客戶編號": 10,
+      "年齡": 28,
+      "性別": "女",
+      "婚姻狀況": "單身",
+      "教育程度": "高中",
+      "收入": "低",
+      "職業類型": "服務/小型企業",
+      "有壽險": false,
+      "保險興趣": [
+        "健康保險/重大疾病",
+        "意外險"
       ],
-      "family_structure": {
-        "family_size": 3
+      "家庭結構": {
+        "家庭人數": 3
       },
-      "risk_attitude": "Risk-Averse",
-      "preferred_channel": "Offline",
-      "sales_acceptance": "High Acceptance",
-      "mbti": "INTP"
+      "風險態度": "風險規避",
+      "偏好管道": "線下",
+      "銷售接受度": "高度接受",
+      "MBTI": "INTP"
     }
   ]
   
