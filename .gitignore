@@ -13,4 +13,6 @@ node_modules/
 
 # Ignore Python virtual environments
 venv/
-__pycache__/
+
+# Ignore all __pycache__ directories
+**/__pycache__/
