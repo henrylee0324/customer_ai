@@ -7,7 +7,7 @@ from llm.llm import LLM
 
 load_dotenv()
 
-class CLAUDE(LLM):      
+class Claude(LLM):      
     def generate(self, prompt="", image_path=None, model_name="claude-3-5-sonnet-20241022"):
         client = anthropic.Client(
             api_key=self.api_key,
@@ -51,7 +51,7 @@ class CLAUDE(LLM):
         return await loop.run_in_executor(None, self.generate, prompt, image_path, model_name)
 
 if __name__ == "__main__":
-    claude = CLAUDE(os.getenv("ANTHROPIC_API_KEY"))
+    claude = Claude(os.getenv("ANTHROPIC_API_KEY"))
     prompt = "Say hello"
 
     # 執行同步請求

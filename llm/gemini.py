@@ -6,13 +6,13 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 from llm.llm import LLM
 
-class GEMINI(LLM):
+class Gemini(LLM):
     def __init__(self, api_key):
         super().__init__(api_key)
         genai.configure(api_key=self.api_key)
         self.last_execution_time = None  # 記錄上次執行時間
 
-    def generate(self, prompt="", image_path=None, model_name="gemini-1.5-pro-002", needwaiting = True):
+    def generate(self, prompt="", image_path=None, model_name="gemini-1.5-pro-002", needwaiting = False):
         current_time = time.time()
 
         if self.last_execution_time and (current_time - self.last_execution_time < 30) and needwaiting:
@@ -36,14 +36,14 @@ class GEMINI(LLM):
             return response.text
         except Exception as e:
             print(f"Error: {e}")
-    async def async_generate(self, prompt="", image_path=None, model_name="gemini-1.5-pro-002", needwaiting = True):
+    async def async_generate(self, prompt="", image_path=None, model_name="gemini-1.5-pro-002", needwaiting = False):
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None, self.generate, prompt, image_path, model_name, needwaiting)
 
     
 if __name__ == "__main__":
     load_dotenv()
-    gemini = GEMINI(os.getenv("GEMINI_API_KEY"))
+    gemini = Gemini(os.getenv("GEMINI_API_KEY"))
     prompt = "Say hello"
     res = gemini.generate(prompt=prompt)
     if res:

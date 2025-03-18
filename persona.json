@@ -1,0 +1,224 @@
+[
+    {
+      "customer_id": 1,
+      "age": 51,
+      "gender": "Male",
+      "marital_status": "Married",
+      "education": "College",
+      "income": "Medium",
+      "job_type": "Service/Small Business",
+      "has_life_insurance": true,
+      "insurance_interest": [
+        "Retirement Pension",
+        "Health Insurance/Critical Illness",
+        "Child Education",
+        "Life Insurance/Savings"
+      ],
+      "family_structure": {
+        "family_size": 5
+      },
+      "risk_attitude": "Risk-Averse",
+      "preferred_channel": "Offline",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "INTJ"
+    },
+    {
+      "customer_id": 2,
+      "age": 36,
+      "gender": "Male",
+      "marital_status": "Single",
+      "education": "High School",
+      "income": "Low",
+      "job_type": "Agriculture/Farming",
+      "has_life_insurance": false,
+      "insurance_interest": [
+        "Health Insurance/Critical Illness",
+        "Accident Insurance"
+      ],
+      "family_structure": {
+        "family_size": 2
+      },
+      "risk_attitude": "Risk-Averse",
+      "preferred_channel": "Offline",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "ISTP"
+    },
+    {
+      "customer_id": 3,
+      "age": 33,
+      "gender": "Male",
+      "marital_status": "Married",
+      "education": "College",
+      "income": "Low",
+      "job_type": "Agriculture/Farming",
+      "has_life_insurance": false,
+      "insurance_interest": [
+        "Accident Insurance",
+        "Health Insurance/Critical Illness",
+        "Child Education",
+        "Life Insurance/Savings"
+      ],
+      "family_structure": {
+        "family_size": 3
+      },
+      "risk_attitude": "Risk-Averse",
+      "preferred_channel": "Online",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "ESFJ"
+    },
+    {
+      "customer_id": 4,
+      "age": 40,
+      "gender": "Female",
+      "marital_status": "Married",
+      "education": "High School",
+      "income": "Medium",
+      "job_type": "Office Worker/Clerical",
+      "has_life_insurance": false,
+      "insurance_interest": [
+        "Health Insurance/Critical Illness",
+        "Child Education",
+        "Life Insurance/Savings"
+      ],
+      "family_structure": {
+        "family_size": 5
+      },
+      "risk_attitude": "Risk-Averse",
+      "preferred_channel": "Offline",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "ISFJ"
+    },
+    {
+      "customer_id": 5,
+      "age": 45,
+      "gender": "Male",
+      "marital_status": "Married",
+      "education": "High School",
+      "income": "Medium",
+      "job_type": "Office Worker/Clerical",
+      "has_life_insurance": false,
+      "insurance_interest": [
+        "Health Insurance/Critical Illness",
+        "Child Education",
+        "Life Insurance/Savings"
+      ],
+      "family_structure": {
+        "family_size": 3
+      },
+      "risk_attitude": "Risk-Averse",
+      "preferred_channel": "Offline",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "ENFP"
+    },
+    {
+      "customer_id": 6,
+      "age": 18,
+      "gender": "Male",
+      "marital_status": "Married",
+      "education": "High School",
+      "income": "Medium",
+      "job_type": "Agriculture/Farming",
+      "has_life_insurance": false,
+      "insurance_interest": [
+        "Accident Insurance",
+        "Health Insurance/Critical Illness",
+        "Life Insurance/Savings"
+      ],
+      "family_structure": {
+        "family_size": 3
+      },
+      "risk_attitude": "Moderate",
+      "preferred_channel": "Online",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "ISFP"
+    },
+    {
+      "customer_id": 7,
+      "age": 33,
+      "gender": "Female",
+      "marital_status": "Married",
+      "education": "College",
+      "income": "Low",
+      "job_type": "Self-employed/Entrepreneur",
+      "has_life_insurance": false,
+      "insurance_interest": [
+        "Accident Insurance",
+        "Health Insurance/Critical Illness",
+        "Child Education",
+        "Life Insurance/Savings"
+      ],
+      "family_structure": {
+        "family_size": 5
+      },
+      "risk_attitude": "Risk-Averse",
+      "preferred_channel": "Offline",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "ESFJ"
+    },
+    {
+      "customer_id": 8,
+      "age": 18,
+      "gender": "Female",
+      "marital_status": "Married",
+      "education": "High School",
+      "income": "Medium",
+      "job_type": "Agriculture/Farming",
+      "has_life_insurance": true,
+      "insurance_interest": [
+        "Accident Insurance",
+        "Health Insurance/Critical Illness",
+        "Life Insurance/Savings"
+      ],
+      "family_structure": {
+        "family_size": 3
+      },
+      "risk_attitude": "Risk-Averse",
+      "preferred_channel": "Offline",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "ENFP"
+    },
+    {
+      "customer_id": 9,
+      "age": 48,
+      "gender": "Female",
+      "marital_status": "Married",
+      "education": "College",
+      "income": "Medium",
+      "job_type": "Service/Small Business",
+      "has_life_insurance": true,
+      "insurance_interest": [
+        "Health Insurance/Critical Illness",
+        "Child Education",
+        "Life Insurance/Savings"
+      ],
+      "family_structure": {
+        "family_size": 4
+      },
+      "risk_attitude": "Moderate",
+      "preferred_channel": "Online",
+      "sales_acceptance": "Medium Acceptance",
+      "mbti": "ISTJ"
+    },
+    {
+      "customer_id": 10,
+      "age": 28,
+      "gender": "Female",
+      "marital_status": "Single",
+      "education": "High School",
+      "income": "Low",
+      "job_type": "Service/Small Business",
+      "has_life_insurance": false,
+      "insurance_interest": [
+        "Health Insurance/Critical Illness",
+        "Accident Insurance"
+      ],
+      "family_structure": {
+        "family_size": 3
+      },
+      "risk_attitude": "Risk-Averse",
+      "preferred_channel": "Offline",
+      "sales_acceptance": "High Acceptance",
+      "mbti": "INTP"
+    }
+  ]
+  
