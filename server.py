@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import aiofiles
 import uvicorn
+from collections import deque
 
 # 匯入你原本的模組
 from character import Character
@@ -87,7 +88,7 @@ class ChatResponse(BaseModel):
     stage_description: str
     is_pass: bool
     finished: bool
-    
+
 class EndSessionRequest(BaseModel):
     session_id: str
 
@@ -112,15 +113,15 @@ async def start_session(request: StartSessionRequest):
     character = Character(character_info_str, llm, stage_info)
     judge = Judge(llm)
     
-    # 初始對話內容與階段
-    conversation = ""
+    # 初始對話歷史使用 deque（保留最近 3 則訊息），初始階段為 1
+    conversation_history = deque(maxlen=3)
     stage = 1
     # 儲存會話資料到 sessions 字典
     session_id = str(uuid.uuid4())
     sessions[session_id] = {
         "character": character,
         "judge": judge,
-        "conversation": conversation,
+        "conversation_history": conversation_history,
         "stage": stage,
         "stage_info": stage_info,
     }
@@ -144,12 +145,15 @@ async def chat(request: ChatRequest):
     
     character: Character = session["character"]
     judge: Judge = session["judge"]
-    conversation: str = session["conversation"]
+    conversation_history: deque = session["conversation_history"]
     stage: int = session["stage"]
     stage_info = session["stage_info"]
     
-    # 將使用者訊息加入對話內容（依原 CLI 程式）
-    conversation += f"\n使用者: {request.user_input}"
+    # 將使用者訊息加入對話歷史
+    conversation_history.append(f"使用者: {request.user_input}")
+    
+    # 將對話歷史合併為單一字串，用於生成回應
+    conversation = "\n".join(conversation_history)
     
     # 產生角色回應（呼叫非同步方法）
     try:
@@ -157,15 +161,15 @@ async def chat(request: ChatRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"生成回應時發生錯誤: {str(e)}")
     
-    # 更新對話內容：加入角色回應
-    conversation += f"\n角色: {response_text}"
+    # 將角色回應加入對話歷史
+    conversation_history.append(f"角色: {response_text}")
     
     # 取得目前階段描述（同步呼叫）
     stage_description = character.get_current_stage_description() if hasattr(character, "get_current_stage_description") else ""
     
-    # 評估是否通過當前階段（呼叫非同步方法）
+    # 評估是否通過當前階段，傳入對話歷史（以字串形式）
     try:
-        is_pass = await judge.async_evaluate_stage(request.user_input, response_text, inner_activity, stage_description)
+        is_pass = await judge.async_evaluate_stage("\n".join(conversation_history), inner_activity, stage_description)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"階段評估時發生錯誤: {str(e)}")
     
@@ -174,8 +178,7 @@ async def chat(request: ChatRequest):
         stage += 1
         character.stage = stage  # 假設 Character 物件有 stage 屬性
     
-    # 更新 session 中的對話與階段
-    session["conversation"] = conversation
+    # 更新 session 中的對話歷史與階段
     session["stage"] = stage
     
     finished = False
@@ -186,7 +189,7 @@ async def chat(request: ChatRequest):
     return ChatResponse(
         response_text=response_text,
         inner_activity=inner_activity,
-        conversation=conversation,
+        conversation="\n".join(conversation_history),
         current_stage=stage,
         stage_description=stage_description,
         is_pass=is_pass,
