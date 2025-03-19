@@ -9,15 +9,16 @@ load_dotenv()
 class OpenAIGPT(LLM):
     def __init__(self, api_key):
         super().__init__(api_key)
-        self.client = openai.OpenAI(api_key=api_key)  # 正確的初始化方式
+        openai.api_key = api_key
+        self.client = openai  # 直接使用 openai 模組
 
     def generate(self, prompt="", image_path=None, model_name="gpt-4o"):
-        response = self.client.chat.completions.create(  # 更新的 API 調用方式
+        response = self.client.ChatCompletion.create(
             model=model_name,
             messages=[{"role": "user", "content": prompt}],
             max_tokens=1000
         )
-        return response.choices[0].message.content  # 獲取回應
+        return response.choices[0].message.content
 
     async def async_generate(self, prompt="", image_path=None, model_name="gpt-4o"):
         loop = asyncio.get_event_loop()
