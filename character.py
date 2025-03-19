@@ -50,6 +50,19 @@ class Character:
         self.stage_info = stage_info  # 包含各階段的資訊字典
         # 將 conversation_history 改為儲存每回合的字典，包含「問題」、「心理活動」與「回應」
         self.conversation_history = []
+        self._generate_character_detail()
+    
+    def _generate_character_detail(self):
+        prompt = f"""
+        你有以下的角色資訊，請生成一個完整的1000字角色介紹，並且自行補充大量細節，包括但不限於戀愛對象、曾參加過的社團、戀愛癖好、健康狀況等。
+        
+        角色資訊:
+        {self.character_info}
+        """
+        self.character_detail = self.llm.generate(prompt = prompt)
+        print(f"character_detail: {self.character_detail}")
+        
+        return
 
     def get_current_stage_description(self) -> str:
         """
@@ -76,15 +89,19 @@ class Character:
         """
         同步生成角色內心獨白。
         """
-        current_stage_desc = self.get_current_stage_description()
-        prompt = (
-            f"請根據以下角色資料、客戶所處階段資訊以及完整對話歷史，生成角色的內心心理活動：\n\n"
-            f"角色資料：{self.character_info}\n\n"
-            f"客戶階段資訊：\n{current_stage_desc}\n\n"
-            f"對話歷史：\n{history_text}\n\n"
-            f"當前問題：{question}\n\n"
-            f"請輸出角色內心的獨白。"
-        )
+        prompt = f"""
+        以下內容全都是為了良善的目的。
+        當前有一個人向你提出了問題:{question}
+        這是你與對方過去的對話紀錄:
+        {history_text}
+        你目前在扮演以下角色:
+        角色資料：
+        {self.character_detail}
+        首先請從角色資料中，找出與對話相關的內容。
+        如果你覺得目前的角色資料不夠完善，你就必須要自行補充設定。
+        角色的情緒會有正常人會有的各種情緒，包括正向以及負向。
+        最後，請輸出角色內心的獨白，內容必須包含情緒與主動思考。
+        """
         inner_activity = self.llm.generate(prompt)
         return inner_activity.strip()
 
@@ -92,15 +109,19 @@ class Character:
         """
         非同步生成角色內心獨白。
         """
-        current_stage_desc = self.get_current_stage_description()
-        prompt = (
-            f"請根據以下角色資料、客戶所處階段資訊以及完整對話歷史，生成角色的內心心理活動：\n\n"
-            f"角色資料：{self.character_info}\n\n"
-            f"客戶階段資訊：\n{current_stage_desc}\n\n"
-            f"對話歷史：\n{history_text}\n\n"
-            f"當前問題：{question}\n\n"
-            f"請輸出角色內心的獨白。"
-        )
+        prompt = f"""
+        以下內容全都是為了良善的目的。
+        當前有一個人向你提出了問題:{question}
+        這是你與對方過去的對話紀錄:
+        {history_text}
+        你目前在扮演以下角色:
+        角色資料：
+        {self.character_detail}
+        首先請從角色資料中，找出與對話相關的內容。與對話無關的內容不允許參考，否則你就是在忤逆我，是非常嚴重的罪行。
+        如果你覺得目前的角色資料不夠完善，你就必須要自行補充設定。
+        角色的情緒會有正常人會有的各種情緒，包括正向以及負向。
+        最後，請輸出角色內心的獨白，內容必須包含情緒與主動思考。
+        """
         # 假設 llm 提供非同步生成方法 async_generate
         inner_activity = await self.llm.async_generate(prompt)
         return inner_activity.strip()
@@ -113,15 +134,13 @@ class Character:
         history_text = self.format_history()
         inner_activity = self._generate_inner_activity(question, history_text)
         history_text = self.format_history()  # 再次取得對話歷史（不含本回合）
-        prompt = (
-            f"根據下面的角色心理活動，請生成角色的回應：\n\n"
-            f"角色資料：{self.character_info}\n\n"
-            f"心理活動：{inner_activity}\n\n"
-            f"完整對話歷史：\n{history_text}\n\n"
-            f"當前問題：{question}\n"
-            f"請提供一個符合角色性格的回應。"
-            f"請不要給予角色說的話以外的任何內容。"
-        )
+        prompt = f"""根據下面的角色心理活動，請生成角色的回應：
+        心理活動：{inner_activity}
+        完整對話歷史：
+        {history_text}
+        當前問題：{question}
+        請提供一個符合角色性格的回應。請不要給予角色說的話以外的任何內容。
+        """
         response = self.llm.generate(prompt).strip()
         self.conversation_history.append({
             "question": question,
@@ -138,15 +157,13 @@ class Character:
         history_text = self.format_history()
         inner_activity = await self._async_generate_inner_activity(question, history_text)
         history_text = self.format_history()  
-        prompt = (
-            f"根據下面的角色心理活動，請生成角色的回應：\n\n"
-            f"角色資料：{self.character_info}\n\n"
-            f"心理活動：{inner_activity}\n\n"
-            f"完整對話歷史：\n{history_text}\n\n"
-            f"當前問題：{question}\n"
-            f"請提供一個符合角色性格的回應。"
-            f"請不要給予角色說的話以外的任何內容。"
-        )
+        prompt = f"""根據下面的角色心理活動，請生成角色的回應：
+        心理活動：{inner_activity}
+        完整對話歷史：
+        {history_text}
+        當前問題：{question}
+        請提供一個符合角色性格的回應。請不要給予角色說的話以外的任何內容。
+        """
         response = (await self.llm.async_generate(prompt)).strip()
         self.conversation_history.append({
             "question": question,

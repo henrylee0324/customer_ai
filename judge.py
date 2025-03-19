@@ -8,12 +8,11 @@ class Judge:
     def __init__(self, llm: LLM):
         self.llm = llm
 
-    def evaluate_stage(self, conversation: str, response_text: str, inner_activity: str, stage_description: str) -> bool:
+    def evaluate_stage(self, conversation: str, inner_activity: str, stage_description: str) -> bool:
         """
         同步方式利用 LLM 來評估是否完成階段。
         傳入參數：
-          - conversation: 完整的對話內容
-          - response_text: 角色回應的文字
+          - conversation: 一組對話內容
           - inner_activity: 內部活動或系統紀錄的訊息
           - stage_description: 當前階段的描述文字
         回傳值：
@@ -21,10 +20,9 @@ class Judge:
         """
         prompt = (
             "請根據以下資訊判斷目前階段是否已完成：\n"
-            f"【對話內容】：{conversation}\n"
-            f"【角色回應】：{response_text}\n"
-            f"【內部活動】：{inner_activity}\n"
-            f"【階段描述】：{stage_description}\n\n"
+            f"【對話】：\n{conversation}\n\n"
+            f"【角色心理活動】：\n{inner_activity}\n\n"
+            f"【階段描述】：\n{stage_description}\n\n"
             "請回答「是」或「否」，其中「是」代表階段已完成；「否」代表階段尚未完成。"
         )
         result = self.llm.generate(prompt)
@@ -32,23 +30,21 @@ class Judge:
             return True
         return False
 
-    async def async_evaluate_stage(self, conversation: str, response_text: str, inner_activity: str, stage_description: str) -> bool:
+    async def async_evaluate_stage(self, conversation: str, inner_activity: str, stage_description: str) -> bool:
         """
         非同步方式利用 LLM 來評估是否完成階段。
         傳入參數：
-          - conversation: 完整的對話內容
-          - response_text: 角色回應的文字
+          - conversation: 一組對話內容
           - inner_activity: 內部活動或系統紀錄的訊息
           - stage_description: 當前階段的描述文字
         回傳值：
           - True 表示該階段已完成，可進入下一階段；False 表示仍需進行。
         """
         prompt = (
-            "請根據以下資訊判斷目前階段是否已完成：\n"
-            f"【對話內容】：{conversation}\n"
-            f"【角色回應】：{response_text}\n"
-            f"【內部活動】：{inner_activity}\n"
-            f"【階段描述】：{stage_description}\n\n"
+            "請根據以下資訊判斷目前階段是否已完成：\n\n"
+            f"【對話】：\n{conversation}\n"
+            f"【角色心理活動】：\n{inner_activity}\n\n"
+            f"【階段描述】：\n{stage_description}\n\n"
             "請回答「是」或「否」，其中「是」代表階段已完成；「否」代表階段尚未完成。"
         )
         result = await self.llm.async_generate(prompt)

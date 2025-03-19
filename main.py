@@ -11,6 +11,8 @@ from llm.gemini import Gemini
 from judge import Judge
 from colorama import init, Fore, Style
 import aiofiles
+from collections import deque
+
 
 # 初始化 colorama (在 Windows 上會有更好的相容性)
 init(autoreset=True)
@@ -82,26 +84,30 @@ def main_sync():
     
     print(f"{Fore.GREEN}客戶資訊: \n{character_info_str}")
     print(f"{Fore.YELLOW}開始對話 (輸入 'quit', 'exit' 或 'q' 可結束對話)：")
+
+    conversation_history = deque(maxlen=3)
     
-    conversation = ""  # 儲存累積對話內容
     while True:
+        conversation = ""
         user_input = input(f"\n{Fore.BLUE}使用者: {Style.RESET_ALL}")
         if user_input.lower() in ("quit", "exit", "q"):
             print(f"{Fore.RED}對話結束。{Style.RESET_ALL}")
             break
 
         # 將使用者輸入加入對話內容中
-        conversation += f"\n使用者: {user_input}"
+        conversation += f"使用者: \n{user_input}\n"
         
         # 生成角色回應（同步版）
         response_text, inner_activity = character.generate_response(conversation)
         print(f"{Fore.RED}inner_activity: \n{inner_activity}\n{Style.RESET_ALL}")
         print(f"\n{Fore.GREEN}角色回應： \n{response_text}\n{Style.RESET_ALL}")
+        conversation += f"角色回應： \n{response_text}\n"
+        conversation_history.append(conversation)
         
         # 取得當前階段描述並評估是否通過
         stage_description = character.get_current_stage_description()
         print(f"stage: {stage_description}")
-        ispass = judge.evaluate_stage(user_input, response_text, inner_activity, stage_description)
+        ispass = judge.evaluate_stage(str(conversation_history), inner_activity, stage_description)
         print(f"{Fore.YELLOW}ispass: {ispass}{Style.RESET_ALL}")
         if ispass:
             character.stage += 1
@@ -127,9 +133,10 @@ async def main_async():
     
     print(f"{Fore.GREEN}客戶資訊: \n{character_info_str}")
     print(f"{Fore.YELLOW}開始對話 (輸入 'quit', 'exit' 或 'q' 可結束對話)：")
+    conversation_history = deque(maxlen=3)
     
-    conversation = ""  # 儲存累積對話內容
     while True:
+        conversation = ""
         user_input = input(f"\n{Fore.BLUE}使用者: {Style.RESET_ALL}")
         if user_input.lower() in ("quit", "exit", "q"):
             print(f"{Fore.RED}對話結束。{Style.RESET_ALL}")
@@ -141,10 +148,12 @@ async def main_async():
         response_text, inner_activity = await character.async_generate_response(conversation)
         print(f"{Fore.RED}inner_activity: \n{inner_activity}\n{Style.RESET_ALL}")
         print(f"\n{Fore.GREEN}角色回應： \n{response_text}\n{Style.RESET_ALL}")
+        conversation += f"角色回應： \n{response_text}\n"
+        conversation_history.append(conversation)
         
         stage_description = character.get_current_stage_description()
         print(f"stage: {stage_description}")
-        ispass = await judge.async_evaluate_stage(user_input, response_text, inner_activity, stage_description)
+        ispass = await judge.async_evaluate_stage(str(conversation_history), inner_activity, stage_description)
         print(f"{Fore.YELLOW}ispass: {ispass}{Style.RESET_ALL}")
         if ispass:
             character.stage += 1
