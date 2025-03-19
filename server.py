@@ -5,6 +5,7 @@ import uuid
 import asyncio
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import aiofiles
 import uvicorn
@@ -24,6 +25,19 @@ app = FastAPI(title="Character Chat API")
 
 # 用來儲存會話資料（僅供示範，非生產環境用）
 sessions = {}
+
+origins = [
+    "http://localhost:9000",
+    # 如有需要，也可以加入其他來源
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # 輔助函式：非同步載入隨機角色資料
 async def load_random_character_async(json_file: str) -> dict:
@@ -188,4 +202,4 @@ async def end_session(request: EndSessionRequest):
         raise HTTPException(status_code=404, detail="Session not found")
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=8000)
+    uvicorn.run("server:app", reload=True, host="localhost", port=8000)
