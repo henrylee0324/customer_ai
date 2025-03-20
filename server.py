@@ -73,6 +73,7 @@ class StartSessionRequest(BaseModel):
 class StartSessionResponse(BaseModel):
     session_id: str
     character_info: dict
+    character_detail: str
     current_stage: int
     stage_description: str
 
@@ -101,6 +102,8 @@ async def start_session(request: StartSessionRequest):
         # 將角色資料格式化成字串（依原程式）
         character_info_str = json.dumps(character_data, indent=2, ensure_ascii=False)
         stage_info = await load_stage_info_async("stage_info.json")
+        
+        # 添加角色詳細信息生成
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"檔案載入錯誤: {str(e)}")
 
@@ -111,6 +114,10 @@ async def start_session(request: StartSessionRequest):
     
     # 建立 Character 與 Judge 物件（假設這些類別皆有非同步方法）
     character = Character(character_info_str, llm, stage_info)
+    
+    # 生成角色詳細信息
+    character_detail = character._generate_character_detail()
+    
     judge = Judge(llm)
     
     # 初始對話歷史使用 deque（保留最近 3 則訊息），初始階段為 1
@@ -132,6 +139,7 @@ async def start_session(request: StartSessionRequest):
     return StartSessionResponse(
         session_id=session_id,
         character_info=character_data,
+        character_detail=character_detail,
         current_stage=stage,
         stage_description=stage_description
     )
@@ -177,6 +185,7 @@ async def chat(request: ChatRequest):
     if is_pass:
         stage += 1
         character.stage = stage  # 假設 Character 物件有 stage 屬性
+        stage_description = character.get_current_stage_description() if hasattr(character, "get_current_stage_description") else ""
     
     # 更新 session 中的對話歷史與階段
     session["stage"] = stage

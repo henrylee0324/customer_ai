@@ -50,7 +50,6 @@ class Character:
         self.stage_info = stage_info  # 包含各階段的資訊字典
         # 將 conversation_history 改為儲存每回合的字典，包含「問題」、「心理活動」與「回應」
         self.conversation_history = []
-        self._generate_character_detail()
     
     def _generate_character_detail(self):
         prompt = f"""
@@ -62,7 +61,7 @@ class Character:
         self.character_detail = self.llm.generate(prompt = prompt)
         print(f"character_detail: {self.character_detail}")
         
-        return
+        return self.character_detail
 
     def get_current_stage_description(self) -> str:
         """
@@ -134,6 +133,7 @@ class Character:
         history_text = self.format_history()
         inner_activity = self._generate_inner_activity(question, history_text)
         history_text = self.format_history()  # 再次取得對話歷史（不含本回合）
+        character_detail = self._generate_character_detail()
         prompt = f"""根據下面的角色心理活動，請生成角色的回應：
         心理活動：{inner_activity}
         完整對話歷史：
@@ -147,7 +147,7 @@ class Character:
             "inner_activity": inner_activity,
             "response": response
         })
-        return response, inner_activity
+        return response, inner_activity, character_detail
 
     # 非同步生成回應
     async def async_generate_response(self, question: str) -> tuple:
